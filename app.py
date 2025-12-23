@@ -7,12 +7,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import base64
 import math
-from dotenv import load_dotenv
-import os
 
 # Configure Gemini API Key
-load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # Text extraction
@@ -183,4 +180,5 @@ if st.session_state.text_content:
             </form>
         </div>
         """
+
         st.components.v1.html(copy_download_html, height=70)
